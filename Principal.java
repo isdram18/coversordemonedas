@@ -12,8 +12,7 @@ public class Principal {
         String monedaLocal = "";
         String monedaExtranjera = "";
         double monto = 0;
-        String[] listaMonedas = {"USD","EUR","JPY","GBP","MXN"};
-
+        double resultadoConvercion = 0;
 
         while (menu) {
             System.out.println("***** Bienvneidos A Converzione Consol  *****");
@@ -88,10 +87,10 @@ public class Principal {
                             monedaExtranjera = "EUR";
                             break;
                         case 3:
-                            monedaExtranjera = "JYP";
+                            monedaExtranjera = "JPY";
                             break;
                         case 4:
-                            monedaExtranjera = "BBP";
+                            monedaExtranjera = "GBP";
                             break;
                         case 5:
                             monedaExtranjera = "MXN";
@@ -126,6 +125,8 @@ public class Principal {
         try {
             Moneda moneda = consulta.buscarMonedas(monedaLocal, monedaExtranjera, monto);
             System.out.println(moneda);
+            System.out.println("Has realizado la conversion de "+ monto +" "+ monedaLocal+
+                    " con un valor de " + moneda.conversion_result() + " "+ monedaExtranjera  );
             GuardarEnArchivo generar = new GuardarEnArchivo();
             generar.guardaMontoJson(moneda);
         } catch (IllegalFormatException e) {
